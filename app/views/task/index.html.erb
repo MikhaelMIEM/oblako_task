@@ -1,0 +1,28 @@
+<div id="Header">
+    <h1>Задачи</h1>
+<div/>
+ 
+
+<% @data.each do |project| %>
+    <h2><%= project[:title] %></h2>
+    <% project[:todos].each do |todo| %>
+        <li><%= todo %></li>
+    <% end %>
+<% end %>
+
+<br/>
+<a href="javascript:{}" onclick="document.getElementById('addForm').style.display='block';"> + </a>
+<br/>
+
+<div id="addForm">
+    <%= form_for @todo_add, :as => :todo_add, :url => task_create_path(@todo_add), :html => {:id => "addTodo"} do |p| %>
+        <h1>Новая задача</h1>
+        <%= p.text_field :text %>
+        <%= p.select :project_id, options_for_select(@projects_name_id, { required: true, include_blank: false}) %>
+        <a href="javascript:{}" onclick="document.getElementById('addTodo').submit();">Ок</a>
+        <br/>
+        <a href="javascript:{}" onclick="document.getElementById('addForm').style.display='none';">Отмена</a>
+        <br/>
+    <% end %>
+<div/>
+
