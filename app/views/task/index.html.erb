@@ -3,10 +3,11 @@
 <div/>
  
 
-<% @data.each do |project| %>
+<% @projects.each do |project| %>
     <h2><%= project[:title] %></h2>
-    <% project[:todos].each do |todo| %>
-        <li><%= todo %></li>
+    <% project_id_select_condition = 'project_id = ' + project[:id].to_s %>
+    <% @todos.where(project_id_select_condition).each do |todo| %>
+        <li><%= todo[:project_id]==project[:id] ? todo[:text] : '' %></li>
     <% end %>
 <% end %>
 

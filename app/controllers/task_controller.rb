@@ -3,24 +3,14 @@ class TaskController < ApplicationController
   layout false
 
   def index
-    projects = Project.all
-    todos = Todo.all
-    
-    @data = []
+    @projects = Project.all
+    @todos = Todo.all
     @projects_name_id = {}
     @todo_add = Todo.new
 
-    projects.each do |project|
-      project_todo = {}
+    @projects.each do |project|
+      puts project
       @projects_name_id[project.title] = project.id
-      project_todo[:title] = project.title
-      project_todo[:todos] = []
-      todos.each do |todo|
-        if todo.project_id == project.id
-          project_todo[:todos] << todo.text
-        end
-      end
-      @data << project_todo
     end
   end
 
