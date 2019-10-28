@@ -9,7 +9,6 @@ class TaskController < ApplicationController
     @todo_add = Todo.new
 
     @projects.each do |project|
-      puts project
       @projects_name_id[project.title] = project.id
     end
   end
