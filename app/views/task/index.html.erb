@@ -1,3 +1,8 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head> 
+
+
 <div id="Header">
     <h1>Задачи</h1>
 <div/>
@@ -5,9 +10,8 @@
 
 <% @projects.each do |project| %>
     <h2><%= project[:title] %></h2>
-    <% project_id_select_condition = 'project_id = ' + project[:id].to_s %>
-    <% @todos.where(project_id_select_condition).each do |todo| %>
-        <li><%= todo[:project_id]==project[:id] ? todo[:text] : '' %></li>
+    <% project.todos.each do |todo| %>
+        <li><%= todo[:text] %></li>
     <% end %>
 <% end %>
 

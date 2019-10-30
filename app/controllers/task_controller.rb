@@ -3,11 +3,11 @@ class TaskController < ApplicationController
   layout false
 
   def index
-    @projects = Project.all
-    @todos = Todo.all
-    @projects_name_id = {}
+    @projects = Project.includes(:todos)
+
     @todo_add = Todo.new
 
+    @projects_name_id = {}
     @projects.each do |project|
       @projects_name_id[project.title] = project.id
     end
